@@ -1,7 +1,7 @@
 package com.ecommerce.project.Controller;
 
 import com.ecommerce.project.payload.AddressDTO;
-import com.ecommerce.project.service.AddressService;
+import com.ecommerce.project.service.interfaces.AddressService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

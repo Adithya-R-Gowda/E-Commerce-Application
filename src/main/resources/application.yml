@@ -1,0 +1,100 @@
+spring:
+  application:
+    name: sb-ecom
+
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+    exchange:
+      name: order.exchange
+    queue:
+      name: order.queue
+    routing:
+      key: order.tracking
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: iamadithyagowda@gmail.com
+    password: amdz zowx esly tgyv
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/ecom_db
+    username: postgres
+    password: admin
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  app:
+    jwtSecret: mySecretKey123912738aopsgjnspkmndfsopkvajoirjg94gf2opfng2moknm
+    jwtExpirationMs: 3000000
+    jwtCookieName: springBootEcom
+
+# Cache Redis Configuration (commented)
+#  cache:
+#    type: redis
+#    cache-names: product
+#
+#  data:
+#    redis:
+#      host: localhost
+#      port: 6379
+
+project:
+  image: images/
+
+logging:
+  level:
+    root: info
+    org.springframework.amqp: DEBUG
+    org.springframework.amqp.rabbit: DEBUG
+    org.springframework.amqp.rabbit.connection: DEBUG
+    com.rabbitmq: DEBUG
+
+
+server:
+  port: 8080
+  compression:
+    enabled: true
+    min-response-size: 1024
+    mime-types: application/json
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+    shutdown:
+      enabled: true
+  info:
+    env:
+      enabled: true
+
+info:
+  app:
+    name: E-Commerce-Application
+    description: App Built By Me
+    version: 1.0.0
+
+
+

@@ -6,10 +6,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Data
@@ -31,7 +28,7 @@ public class User {
     private String userName;
 
     @NotBlank
-    @Size(max = 20)
+    @Size(max = 150)
     @Email
     @Column(name = "email")
     private String email;
@@ -74,6 +71,16 @@ public class User {
             orphanRemoval = true)
     private Set<Product> products;
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(userId);
+    }
 
-
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(userId, user.userId);
+    }
 }

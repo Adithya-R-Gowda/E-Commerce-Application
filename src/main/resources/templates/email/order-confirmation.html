@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Order Confirmation</title>
+</head>
+
+<body style="font-family: Arial, sans-serif; background-color: #f7f7f7; padding: 20px;">
+<div style="max-width: 600px; margin: auto; padding: 20px; background: #ffffff; border-radius: 8px;">
+
+    <h2 style="color: #27ae60;">🎉 Order Confirmed!</h2>
+
+    <p>Hi <b th:text="${customerName}">Customer</b>,</p>
+
+    <p>Your order <b th:text="${order.orderId}">#123456</b> has been successfully confirmed.</p>
+
+    <p><b>Order Date:</b> <span th:text="${order.orderDate}"></span></p>
+    <p><b>Payment Mode:</b> <span th:text="${order.payment.paymentMethod}"></span></p>
+    <p><b>Order Status:</b> <span th:text="${order.orderStatus}"></span></p>
+
+    <h3>🛒 Items Purchased</h3>
+
+    <table width="100%" border="1" cellspacing="0" cellpadding="8" style="border-collapse: collapse;">
+        <thead style="background-color: #e6e6e6;">
+        <tr>
+            <th>Product</th>
+            <th>Qty</th>
+            <th>Price</th>
+            <th>Discount</th>
+            <th>Total</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="item : ${order.orderItems}">
+            <td th:text="${item.product.productName}">Product Name</td>
+            <td th:text="${item.quantity}">1</td>
+            <td>&#8377;<span th:text="${item.orderedProductPrice}"></span></td>
+            <td><span th:text="${item.discount}"></span>%</td>
+            <td>&#8377;<span
+                    th:text="${item.orderedProductPrice * item.quantity}">0</span></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <br>
+    <p style="font-size: 18px;">
+        <b>Total Amount :</b>
+        <span style="color: #27ae60;" th:text="'₹' + ${order.totalAmount}"></span>
+    </p>
+
+    <br>
+    <p>Thank you for shopping with us ❤️<br>
+        We hope to serve you again!</p>
+
+    <hr>
+    <small style="color: #777;">This is an automated message. Please do not reply.</small>
+
+</div>
+</body>
+</html>

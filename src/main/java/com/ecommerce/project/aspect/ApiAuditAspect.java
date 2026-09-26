@@ -15,7 +15,7 @@ public class ApiAuditAspect {
 
     @Around("within(@org.springframework.web.bind.annotation.RestController *)")
     public Object logRequestResponseAndTime(ProceedingJoinPoint joinPoint) throws Throwable {
-        Long start = System.currentTimeMillis();
+        long start = System.currentTimeMillis();
         String methodName = joinPoint.getSignature().toShortString();
 
         // Log request
@@ -30,7 +30,7 @@ public class ApiAuditAspect {
             Object result = joinPoint.proceed();
 
             // Calculate execution time
-            Long duration = System.currentTimeMillis() - start;
+            long duration = System.currentTimeMillis() - start;
 
             // Log Response
             logger.info(" [API Response] " + methodName + " -> " + result);
@@ -38,7 +38,7 @@ public class ApiAuditAspect {
 
             return result;
         } catch (Exception ex) {
-            Long duration = System.currentTimeMillis() - start;
+            long duration = System.currentTimeMillis() - start;
             logger.info("❌ [API ERROR] " + methodName + " threw: " + ex.getMessage());
             logger.info("⏱️  [EXECUTION TIME] " + methodName + " failed in " + duration + " ms");
             throw ex;
