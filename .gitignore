@@ -1,16 +1,12 @@
+# Build output
+/target/
+*.class
+
 # IntelliJ IDEA
 .idea/
 *.iml
-
-# Maven build output
-/target/
-
-# Java bytecode
-*.class
-
-# Logs
-*.log
-/logs/
+*.ipr
+*.iws
 
 # Eclipse
 .project
@@ -18,10 +14,36 @@
 .settings/
 bin/
 
-# OS-specific
+# Logs
+*.log
+/logs/
+hs_err_pid*
+
+# Local environment and secret files
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.keystore
+
+# Machine-specific Spring Boot configuration
+# Keep application.yml/properties in version control; use application-local.*
+# (or an environment-specific profile) for local credentials and overrides.
+application-local.properties
+application-local.yml
+application-local.yaml
+application-secret.properties
+application-secret.yml
+application-secret.yaml
+*.properties.local
+*.yml.local
+*.yaml.local
+
+# OS-generated files
 .DS_Store
 Thumbs.db
-
-# Environment/config
-.env
-*.properties.local
+Desktop.ini
